@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Message from './components/Message'
 import Messages from './components/Messages'
+import Toolbar from './components/Toolbar'
 
 const messageArray = [
   {
@@ -65,38 +66,17 @@ const messageArray = [
   }
 ]
 
-const message = {
-  "id": 8,
-  "subject": "If we connect the sensor, we can get to the HDD port through the redundant IB firewall!",
-  "read": true,
-  "starred": true,
-  "labels": []
-}
-
 
 class App extends Component {
   render() {
     return (
-      // <Message message={message}/>
+      <div className= "container">
+      <Toolbar/>
       <Messages messages={messageArray}/>
+      </div>
     );
   }
 }
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         {}
-//       </div>
-//     );
-//   }
-// }
+
 
 export default App;

@@ -3,10 +3,9 @@ import Message from './Message'
 
 const Messages = ({messages}) => (
 
-<div className = "container">
+<div>
 {messages.map(message => <Message key={message.id} message ={message}/>)}
 </div>
-
 )
 
 
