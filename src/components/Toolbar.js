@@ -1,6 +1,13 @@
 import React from 'react'
+import Message from './Message'
 
-const Toolbar = () => (
+const Toolbar = ({messages}) => {
+
+const selectedCount = messages.filter(message => message.selected).length
+
+
+
+return (
 
 <div>
   <div className ="row toolbar">
@@ -11,14 +18,14 @@ const Toolbar = () => (
       </p>
 
       <button className="btn btn-default">
-        <i className ="fa fa-square-o"></i>
+        <i className ="fa fa-minus-square-o"></i>
       </button>
 
-      <button className="btn btn-default" disabled="disabled">
+      <button className="btn btn-default" disabled={selectedCount === 0}>
         Mark As Read
       </button>
 
-      <button className="btn btn-default" disabled="disabled">
+      <button className="btn btn-default" disabled={selectedCount === 0}>
         Mark As Unread
       </button>
 
@@ -42,7 +49,7 @@ const Toolbar = () => (
     </div>
   </div>
   </div>
-
-)
+ )
+}
 
 export default Toolbar

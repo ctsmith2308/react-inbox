@@ -18,7 +18,7 @@ const messageArray = [
     "subject": "connecting the system won't do anything, we need to input the mobile AI panel!",
     "read": false,
     "starred": false,
-    "selected": true,
+    // "selected": false,
     "labels": []
   },
   {
@@ -31,9 +31,9 @@ const messageArray = [
   {
     "id": 4,
     "subject": "We need to program the primary TCP hard drive!",
-    "read": true,
+    "read": false,
     "starred": false,
-    "selected": true,
+    // "selected": false,
     "labels": []
   },
   {
@@ -46,33 +46,60 @@ const messageArray = [
   {
     "id": 6,
     "subject": "We need to back up the wireless GB driver!",
-    "read": true,
+    "read": false,
     "starred": true,
     "labels": []
   },
   {
     "id": 7,
     "subject": "We need to index the mobile PCI bus!",
-    "read": true,
+    "read": false,
     "starred": false,
     "labels": ["dev", "personal"]
   },
   {
     "id": 8,
     "subject": "If we connect the sensor, we can get to the HDD port through the redundant IB firewall!",
-    "read": true,
+    "read": false,
     "starred": true,
     "labels": []
   }
 ]
 
-
 class App extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {messages: messageArray}
+  }
+
+  toggleProperty(message, property) {
+      const index = this.state.messages.indexOf(message)
+      this.setState({
+        messages: [
+          ...this.state.messages.slice(0, index),
+          { ...message, [property]: !message[property] },
+          ...this.state.messages.slice(index + 1),
+        ]
+      })
+    }
+
+    toggleSelect(message) {
+        this.toggleProperty(message, 'selected')
+      }
+
+    toggleStar(message){
+      this.toggleProperty(message, 'starred')
+    }
+
   render() {
+    console.log(this.state);
     return (
       <div className= "container">
-      <Toolbar/>
-      <Messages messages={messageArray}/>
+      <Toolbar messages = {this.state.messages}/>
+      <Messages messages={this.state.messages}
+      toggleSelect={this.toggleSelect.bind(this)}
+      toggleStar={this.toggleStar.bind(this)}/>
       </div>
     );
   }
